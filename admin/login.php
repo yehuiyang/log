@@ -1,24 +1,8 @@
 <?php
-//打开SESSION
-session_start();
-//db配置
-$db_confog=array(
-	'host'=>'localhost',
-	'user'=>'yehuiyang',
-	'pass'=>'54874664',
-	'data'=>'log',
-	'tcp'=>3306);
-//连接数据库
-$db = @new mysqli($db_confog['host'],$db_confog['user'],$db_confog['pass'],$db_confog['data'],$db_confog['tcp']);
-//连接错误时报错
-if ($db->connect_errno) {
-	die('<br>错误代码：'.$db->connect_errno.'<br>错误信息：'.$db->connect_error);
-}
-//设置数据库查询出的数据的编码
-$db->set_charset('utf8');
+require dirname(__DIR__).'/inti.php';
 //判断COOKIE and SESSION
 if(pdlogin($db)){
-	echo "登陆成功";
+	header("Location:./index.php");
 	die;
 }
 
@@ -68,7 +52,6 @@ function pdlogin($db){
 		}else{
 			//编写SQL语句
 			$sql="SELECT * FROM users WHERE username='{$info[0]}' LIMIT 1";
-			var_dump($sql);
 			//执行SQL    如果出错打印错误信息
 			if (!$stmt = $db->query($sql)) {
 				die('<br>错误代码：'.$db->errno.'<br>错误信息：'.$db->error);
@@ -95,4 +78,4 @@ function pdlogin($db){
 		return false;
 	}
 }
-include 'views/login.html';
+include __DIR__.'/views/login.php';

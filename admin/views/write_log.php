@@ -45,7 +45,7 @@
                         </div>
                     </li>
                     <li><a href="" id="menu_wt"><i class="fa fa-edit fa-fw"></i> 写文章</a></li>
-                    <li><a href="admin_log.php.htm" id="menu_log"><i class="fa fa-list-alt fa-fw"></i> 文章</a></li>
+                    <li><a href="./admin_log.php" id="menu_log"><i class="fa fa-list-alt fa-fw"></i> 文章</a></li>
                     <li><a href="tag.php.htm" id="menu_tag"><i class="fa fa-tags fa-fw"></i> 标签</a></li>
                     <li><a href="sort.php.htm" id="menu_sort"><i class="fa fa-flag fa-fw"></i> 分类</a></li>
                     <li><a href="comment.php.htm" id="menu_cm"><i class="fa fa-comments fa-fw"></i> 评论</a></li>
@@ -129,7 +129,7 @@
 
                     <div class="form-group">
                         <label>发布时间：</label>
-                        <input maxlength="200" name="postdate" id="postdate" value="<?php echo $datetime; ?>" class="form-control" />
+                        <input maxlength="200" name="postdate" id="postdate" value="<?php echo date('Y-m-d H:i:s'); ?>" class="form-control" />
                     </div>
                     
                     <div class="form-group">
