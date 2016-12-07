@@ -1,5 +1,5 @@
 <?php
-require dirname(__DIR__).'/inti.php';
+require dirname(__DIR__).'/init.php';
 //判断COOKIE and SESSION
 if(pdlogin($db)){
 	header("Location:./index.php");

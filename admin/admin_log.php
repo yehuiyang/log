@@ -1,6 +1,6 @@
 <?php
 //
-require dirname(__DIR__).'/inti.php';
+require dirname(__DIR__).'/init.php';
 $sql = 'SELECT * FROM `articles`';
 //执行SQL    如果出错打印错误信息
 if (!$stmt = $db->query($sql)) {

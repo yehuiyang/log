@@ -1,31 +1,31 @@
-<?php include __DIR__.'/head.php'; ?>
-        <div id="page-wrapper">
+<?php include __DIR__.'/head.php' ?>
+            <div id="page-wrapper">
 <script type="text/javascript" charset="utf-8" src="editor/kindeditor.js"></script>
 <script type="text/javascript" charset="utf-8" src="editor/lang/zh_CN.js"></script>
 
-<form action="" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
+<form action="?action=update&id=<?php echo $id ?>" method="post" enctype="multipart/form-data" id="addlog" name="addlog">
     <!--文章内容-->
     <div class="col-lg-8">
         <div class="containertitle">
-            <b>写文章</b><span id="msg_2"></span>
+            <b>编辑文章</b><span id="msg_2"></span>
         </div>
         <div id="msg"></div>
         <div id="post" class="form-group">
             <div>
-                <input type="text" name="title" id="title" value="" class="form-control" placeholder="文章标题" />
+                <input type="text" name="title" id="title" value="<?php echo $row['1']; ?>" class="form-control" placeholder="文章标题" />
             </div>
             <div id="post_bar">
                 <div class="show_advset">
                     <span onclick="displayToggle('FrameUpload', 0);autosave(1);">上传插入<i class="fa fa-caret-right fa-fw"></i></span>
                                         <span id="asmsg"></span>
-                    <input type="hidden" name="as_logid" id="as_logid" value="-1">
+                    <input type="hidden" name="as_logid" id="as_logid" value="1">
                 </div>
                 <div id="FrameUpload" style="display: none;">
-                    <iframe width="100%" height="330" frameborder="0" src="./views/attachment.php"></iframe>
+                    <iframe width="100%" height="330" frameborder="0" src="attachment.php-action=attlib&logid=1"></iframe>
                 </div>
             </div>
             <div>
-                <textarea id="content" name="content" style="width:100%; height:460px;"></textarea>
+                <textarea id="content" name="content" style="width:100%; height:460px;"><?php echo $row[2]; ?></textarea>
             </div>
             <div class="show_advset" onclick="displayToggle('advset', 1);">高级选项<i class="fa fa-caret-right fa-fw"></i></div>
             <div id="advset">
@@ -56,7 +56,7 @@
 
                     <div class="form-group">
                         <label>发布时间：</label>
-                        <input maxlength="200" name="postdate" id="postdate" value="<?php echo date('Y-m-d H:i:s'); ?>" class="form-control" />
+                        <input maxlength="200" name="postdate" id="postdate" value="<?php echo $row[3]; ?>" class="form-control" />
                     </div>
                     
                     <div class="form-group">
@@ -74,21 +74,21 @@
                         <label for="top">首页置顶</label>
                         <input type="checkbox" value="y" name="sortop" id="sortop"  />
                         <label for="sortop">分类置顶</label>
-                        <input type="checkbox" value="y" name="allow_remark" id="allow_remark" checked="checked"  />
+                        <input type="checkbox" value="y" name="allow_remark" id="allow_remark" checked="checked" checked="checked" />
                         <label for="allow_remark">允许评论</label>
                     </div>
                 </div>
             </div>
 
             <div id="post_button">
-                <input name="token" id="token" value="ac94bc4fcfa2345512df6888adc83e8f" type="hidden" />
-                <input type="hidden" name="ishide" id="ishide" value="" />
-                <input type="hidden" name="gid" value=-1 />
+                <input name="token" id="token" value="2f7945303799fdfe5c2b36302138160e" type="hidden" />
+                <input type="hidden" name="ishide" id="ishide" value="n" />
+                <input type="hidden" name="gid" value=1 />
                 <input type="hidden" name="author" id="author" value=1 />
 
-                                    <input type="submit" value="发布文章" onclick="return checkform();" class="btn btn-primary" />
-                    <input type="button" name="savedf" id="savedf" value="保存草稿" onclick="autosave(2);" class="btn btn-success" />
-                                
+                                    <input type="submit" value="保存并返回" onclick="return checkform();" class="btn btn-primary" />
+                    <input type="button" name="savedf" id="savedf" value="保存" onclick="autosave(2);" class="btn btn-success" />
+                                                    
             </div>
         </div>
     </form>
@@ -105,4 +105,4 @@
     </script>
             <div id="footer"></div>
         </div>
-<?php include __DIR__.'/foot.php'; ?>
+<?php include __DIR__.'/foot.php' ?>
