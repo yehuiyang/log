@@ -9,6 +9,13 @@
         <div class="containertitle">
             <b>编辑文章</b><span id="msg_2"></span>
         </div>
+        <?php if(isset($message)): ?>
+            <div class="alert alert-danger" role="alert">
+              <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+              <span class="sr-only">Error:</span>
+              <?php echo $message; ?>
+            </div>
+        <?php endif; ?>
         <div id="msg"></div>
         <div id="post" class="form-group">
             <div>

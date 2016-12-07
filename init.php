@@ -1,5 +1,6 @@
 <?php
 require __DIR__.'/config.php';
+require __DIR__.'/include/lib/function.base.php';
 date_default_timezone_set('Asia/Shanghai');
 //打开SESSION
 session_start();

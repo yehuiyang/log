@@ -1,5 +1,12 @@
 <?php include __DIR__.'/head.php'; ?>
             <div id="page-wrapper">
+<?php if(isset($message)): ?>
+<div class="alert alert-danger" role="alert">
+  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  <span class="sr-only">Error:</span>
+  <?php echo $message; ?>
+</div>
+<?php endif; ?>
 <div class="panel-heading">
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="admin_log.php.htm">文章管理</a></li>
@@ -28,7 +35,7 @@
     标签：
     还没有标签</div>
 </div>
-<form action="http://127.0.0.1/emlog6/admin/admin_log.php?action=operate_log" method="post" name="form_log" id="form_log">
+<form action="admin_log.php?action=operate_log" method="post" name="form_log" id="form_log">
   <input type="hidden" name="pid" value="">
   <table class="table table-striped table-bordered table-hover dataTable no-footer">
   <thead>
