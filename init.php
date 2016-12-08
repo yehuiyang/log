@@ -1,15 +1,14 @@
 <?php
 require __DIR__.'/config.php';
 require __DIR__.'/include/lib/function.base.php';
+require __DIR__.'/include/lib/DB.class.php';
 date_default_timezone_set('Asia/Shanghai');
 //打开SESSION
 session_start();
 
-//连接数据库
-$db = @new mysqli(DB_HOST,DB_USER,DB_PASS,DB_NAME,DB_PORT);
-//连接错误时报错
-if ($db->connect_errno) {
-	die('<br>错误代码：'.$db->connect_errno.'<br>错误信息：'.$db->connect_error);
-}
-//设置数据库查询出的数据的编码
-$db->set_charset('utf8');
+var_dump(555555);
+$db = DB::init();
+$res = $db->query('SELECT * FROM `articles` WHERE `id` = :id',array(5));
+var_dump($res);
+var_dump($db->fetch_assoc());
+var_dump($db->getError()); 
