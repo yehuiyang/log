@@ -8,12 +8,12 @@ switch ($action) {
 		switch ($operate) {
 			case 'del':
 				$ids = isset($_POST['blog'])&&is_array($_POST['blog'])?array_map('intval', $_POST['blog']):'';
-				$sql = 'DELETE FROM `articles` WHERE `id` in ('.implode(',', $ids).')';
+				$sql = 'DELETE FROM `articles` WHERE `id` in ('.implode(',', array_fill(0, count($ids), '?')).')';
 				//执行SQL    如果出错打印错误信息
-				if (!$stmt = $db->query($sql)) {
-					die('错误代码：'.$db->errno.'<br>错误信息：'.$db->error);
+				if (!$db->query($sql,$ids)) {
+					die('<br>错误信息：'.$db->getError());
 				}
-				if ($db->affected_rows>0) {
+				if ($db->rowCount()>0) {
 					$message = '删除文章成功';
 				}else{
 					$message = '删除文章失败';
@@ -24,21 +24,19 @@ switch ($action) {
 		break;
 	
 	default:
-		$sql = 'SELECT * FROM `articles`';
+		$sql = 'SELECT * FROM `articles` WHERE 1';
 		//执行SQL    如果出错打印错误信息
-		if (!$stmt = $db->query($sql)) {
-			die('错误代码：'.$db->errno.'<br>错误信息：'.$db->error);
+		if (!$db->query($sql)) {
+			die('<br>错asef误信息：'.$db->getError());
 		}
 		//判断值是否正确
-		if ($stmt->num_rows>0) {
+		if ($db->rowCount()>0) {
 			//获取数据
-			$art = array();
-			while ($res = $stmt->fetch_assoc()) {
-				$art[] = $res;
-			}
+			$art = $db->fetch_all_assoc();
 			include __DIR__.'/views/admin_log.php';
 		}else{
 			$message = '没有数据';
+			include __DIR__.'/views/admin_log.php';
 		}
 		break;
 }

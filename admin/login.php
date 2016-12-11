@@ -5,8 +5,6 @@ if(pdlogin($db)){
 	header("Location:./index.php");
 	die;
 }
-
-
 //判断提交方式
 if (isset($_SERVER['REQUEST_METHOD'])&&$_SERVER['REQUEST_METHOD']=='POST') {
 	if (isset($_SESSION['code'])&&isset($_POST['imgcode'])&&is_scalar($_POST['imgcode'])&&strtoupper($_POST['imgcode'])===$_SESSION['code']) {
@@ -16,15 +14,15 @@ if (isset($_SERVER['REQUEST_METHOD'])&&$_SERVER['REQUEST_METHOD']=='POST') {
 
 
 		//编写SQL语句
-		$sql="SELECT * FROM users WHERE username='$name' AND userpass='$pass' LIMIT 1";
+		$sql="SELECT * FROM `users` WHERE `username` = :name AND `userpass` = :pass LIMIT 1";
 		//执行SQL    如果出错打印错误信息
-		if (!$stmt = $db->query($sql)) {
-			die('错误代码：'.$db->errno.'<br>错误信息：'.$db->error);
+		if (!$db->query($sql,array($name,$pass))) {
+			die('<br>错误信息：'.$db->getError());
 		}
 		//判断值是否正确
-		if ($stmt->num_rows==1) {
+		if ($db->rowCount()) {
 			//获取数据
-			$res = $stmt->fetch_assoc();
+			$res = $db->fetch_assoc();
 			//序列化
 			$ass = serialize($res);
 			//存入session
@@ -51,15 +49,15 @@ function pdlogin($db){
 			return md5($_SESSION['info'])==$info[1];
 		}else{
 			//编写SQL语句
-			$sql="SELECT * FROM users WHERE username='{$info[0]}' LIMIT 1";
+			$sql="SELECT * FROM `users` WHERE `username` = :username LIMIT 1";
 			//执行SQL    如果出错打印错误信息
-			if (!$stmt = $db->query($sql)) {
-				die('<br>错误代码：'.$db->errno.'<br>错误信息：'.$db->error);
+			if (!$db->query($sql,array($info[0]))) {
+				die('<br>错误信息：'.$db->getError());
 			}
 			//判断值是否正确
-			if ($stmt->num_rows==1) {
+			if ($db->rowCount()==1) {
 				//获取数据
-				$res = $stmt->fetch_assoc();
+				$res = $db->fetch_assoc();
 				//序列化
 				$ass = serialize($res);
 				//判断COOKIE
