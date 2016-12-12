@@ -6,5 +6,6 @@ define('DB_PASS','54874664');
 define('DB_NAME','log');
 define('DB_PORT',3306);
 define('DB_CHAR','utf8');
+define('ROOT',__DIR__);
 //防止模板被盗
 define('TCP',true);

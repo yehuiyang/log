@@ -1,9 +1,9 @@
 <?php
 require dirname(__DIR__).'/init.php';
+$login = new LoginModel();
 //判断COOKIE and SESSION
 if(pdlogin($db)){
-	header("Location:./index.php");
-	die;
+	to_url('index.php?message=1');
 }
 //判断提交方式
 if (isset($_SERVER['REQUEST_METHOD'])&&$_SERVER['REQUEST_METHOD']=='POST') {
@@ -11,18 +11,8 @@ if (isset($_SERVER['REQUEST_METHOD'])&&$_SERVER['REQUEST_METHOD']=='POST') {
 		//是否传值    解决常见安全
 		$name=isset($_POST['username']) && is_scalar($_POST['username'])?addslashes($_POST['username']):'NULL';
 		$pass=isset($_POST['userpass']) && is_scalar($_POST['userpass'])?addslashes($_POST['userpass']):'NULL';
-
-
-		//编写SQL语句
-		$sql="SELECT * FROM `users` WHERE `username` = :name AND `userpass` = :pass LIMIT 1";
-		//执行SQL    如果出错打印错误信息
-		if (!$db->query($sql,array($name,$pass))) {
-			die('<br>错误信息：'.$db->getError());
-		}
 		//判断值是否正确
-		if ($db->rowCount()) {
-			//获取数据
-			$res = $db->fetch_assoc();
+		if ($res = $login->login($name,$pass)) {
 			//序列化
 			$ass = serialize($res);
 			//存入session
@@ -31,9 +21,9 @@ if (isset($_SERVER['REQUEST_METHOD'])&&$_SERVER['REQUEST_METHOD']=='POST') {
 			$time=isset($_POST['time'])?time()+3600*24*7:null;
 			//存入cookie
 			setcookie('info',$res['username'].'|'.md5($ass),$time,'/','',false,true);
-			echo '用户名密码正确！';
+			to_url('index.php?message=1');
 		}else{
-			$message = '用户名或密码错误！';
+			$message = '用户名或密码错误';
 		}
 	}else{
 		$message = '验证码输入错误';
@@ -48,16 +38,8 @@ function pdlogin($db){
 		if (isset($_SESSION['info'])) {
 			return md5($_SESSION['info'])==$info[1];
 		}else{
-			//编写SQL语句
-			$sql="SELECT * FROM `users` WHERE `username` = :username LIMIT 1";
-			//执行SQL    如果出错打印错误信息
-			if (!$db->query($sql,array($info[0]))) {
-				die('<br>错误信息：'.$db->getError());
-			}
 			//判断值是否正确
-			if ($db->rowCount()==1) {
-				//获取数据
-				$res = $db->fetch_assoc();
+			if ($res = $login->logname($info[0])) {
 				//序列化
 				$ass = serialize($res);
 				//判断COOKIE
@@ -76,4 +58,4 @@ function pdlogin($db){
 		return false;
 	}
 }
-include __DIR__.'/views/login.php';
+include View::admin('login');

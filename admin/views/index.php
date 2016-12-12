@@ -4,6 +4,7 @@
             setTimeout(hideActived, 2600);
             </script>
             <div class="containertitle"><b>管理首页</b></div>
+            <?php echo isset($_GET['message'])?get_message($_GET['message']):''; ?>
             <div class="row">
                 <div class="col-lg-6">
                     <div class="panel panel-default">

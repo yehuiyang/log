@@ -3,6 +3,7 @@
  * DB数据库连接类
  */
 class DB{
+    protected static $DB;
     protected static $dbh;
     protected $stmt;
     /**
@@ -20,7 +21,9 @@ class DB{
         //捕获异常
         try {
             //创建PDO实体类
-            self::$dbh = new PDO($dsn,$user,$pass);
+            if (!isset(self::$dbh)){
+                self::$dbh = new PDO($dsn,$user,$pass);
+            }
         } catch (PDOException $e){
             throw new ErrorException(mb_convert_encoding($e->getMessage(), 'utf-8','gbk'));
         }
@@ -185,9 +188,9 @@ class DB{
      * @return [type] [description]
      */
     public static function init(){
-        if (isset(self::$dbh)){
-            return self::$dbh;
+        if (isset(self::$DB)){
+            return self::$DB;
         }
-        return new static(DB_DIVER.':host='.DB_HOST.';dbname='.DB_NAME.';port='.DB_PORT.';charset='.DB_CHAR,DB_USER,DB_PASS);
+        return self::$DB = new static(DB_DIVER.':host='.DB_HOST.';dbname='.DB_NAME.';port='.DB_PORT.';charset='.DB_CHAR,DB_USER,DB_PASS);
     }
 }

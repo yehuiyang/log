@@ -11,6 +11,7 @@
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="admin_log.php.htm">文章管理</a></li>
         <li role="presentation" ><a href="admin_log.php-pid=draft.htm">草稿管理</a></li>
+        <?php echo isset($_GET['message'])?get_message($_GET['message']):''; ?>
         <div style="margin: 0px 15px;">
 <div class=line></div>
 <div class="filters">

@@ -28,7 +28,7 @@
                     <input type="hidden" name="as_logid" id="as_logid" value="1">
                 </div>
                 <div id="FrameUpload" style="display: none;">
-                    <iframe width="100%" height="330" frameborder="0" src="attachment.php-action=attlib&logid=1"></iframe>
+                    <iframe width="100%" height="330" frameborder="0" src="views/attachment.php"></iframe>
                 </div>
             </div>
             <div>
