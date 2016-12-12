@@ -1,3 +1,3 @@
 <?php
-require dirname(__DIR__).'/init.php';
+require '/global.php';
 include View::admin('index');
