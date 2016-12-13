@@ -11,11 +11,13 @@ class CommentModel{
 		}
 		return $this->db->fetch_all_assoc();
 	}
-	public function ComAdd($id,$artid,$nkname,$content,$postdate){
-		$sql = 'SELECT * FROM `comments` WHERE `artid` = :artid';
-		if (!$this->db->query($sql,array($id,$artid,$nkname,$content,$postdate))) {
+	public function ComAdd($artid,$nkname,$content,$postdate){
+		$sql = 'INSERT INTO `comments` (`artid`,`nkname`,`content`,`postdate`)VALUES (:artid,:nkname,:content,:postdate)';
+		if (!$this->db->query($sql,array($artid,$nkname,$content,$postdate))) {
+			var_dump(2);
 			die('<br>错误信息：'.$this->db->getError());
 		}
+		var_dump(3);
 		return $this->db->rowCount()>0;
 	}
 }

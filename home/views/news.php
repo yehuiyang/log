@@ -27,7 +27,7 @@
                         ></div>
                         <div class="am-form-group">
                           <label for="doc-ta-1">评论</label>
-                          <textarea class="" rows="5" id="doc-ta-1"></textarea>
+                          <textarea class="" rows="5" name="content" id="doc-ta-1"></textarea>
                         </div>
 
                         <p><button type="submit" class="am-btn am-btn-default">提交</button></p>

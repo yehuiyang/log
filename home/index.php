@@ -3,11 +3,18 @@ require dirname(__DIR__).'/init.php';
 $article = new ArticleModel;
 $id = isset($_GET['id'])&&is_scalar($_GET['id'])?intval($_GET['id']):0;
 if(is_post()){
-	$artid = isset($_POST['id'])&&is_scalar($_POST['artid'])?intval($_POST['artid']):0;
+	$artid = isset($_POST['artid'])&&is_scalar($_POST['artid'])?intval($_POST['artid']):0;
 	$nkname = isset($_POST['nkname'])&&is_scalar($_POST['nkname'])?addslashes(htmlspecialchars($_POST['nkname'])):'';
 	$content = isset($_POST['content'])&&is_scalar($_POST['content'])?addslashes(htmlspecialchars($_POST['content'])):'';
 	$postdate = isset($_POST['postdate'])&&is_scalar($_POST['postdate'])?addslashes(htmlspecialchars($_POST['postdate'])):'';
-	var_dump($_POST);
+	$com = new CommentModel;
+	//判断值是否正确
+	if ($com->ComAdd($artid,$nkname,$content,$postdate)) {
+		$message = '评论成功';
+	}else{
+		$message = '评论失败';
+	}
+	to_url('index.php?id='.$artid);
 }else if ($id) {
 	$com = new CommentModel;
 	$art = $article->article($id);
