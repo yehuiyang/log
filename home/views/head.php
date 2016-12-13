@@ -5,6 +5,7 @@
 <title>个人博客</title>
 <meta name="keywords" content="个人博客" />
 <meta name="description" content="" />
+<link rel="stylesheet" type="text/css" href="views/css/amazeui.min.css">
 <link rel="stylesheet" href="views/css/index.css"/>
 <link rel="stylesheet" href="views/css/style.css"/>
 <script type="text/javascript" src="views/js/jquery1.42.min.js"></script>
@@ -23,7 +24,7 @@
      <!--header end-->
     <!--nav-->
      <div id="nav">
-        <ul>
+        <ul style="padding-left: 0px;">
          <li><a href="index.php">首页</a></li>
          <li><a href="about.php">关于我</a></li>
          <li><a href="shuo.php">碎言碎语</a></li>

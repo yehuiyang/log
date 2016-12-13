@@ -11,14 +11,14 @@
             <?php foreach ($art as $key => $value): ?>
               <!--wz-->
            <div class="wz">
-            <h3><a href="#" title="<?php echo $value['title']; ?>"><?php echo $value['title']; ?></a></h3>
+            <h3><a href="index.php?id=<?php echo $value['id']; ?>" title="<?php echo $value['title']; ?>"><?php echo $value['title']; ?></a></h3>
              <dl>
-               <dt><img src="views/images/s.jpg" width="200"  height="123" alt=""></dt>
+               <dt></dt>
                <dd>
                  <p class="dd_text_1"><?php echo $value['content']; ?></p>
                <p class="dd_text_2">
                <span class="left author">段亮</span><span class="left sj">时间:<?php echo $value['postdate']; ?></span>
-               <span class="left fl">分类:<a href="#" title="学无止境">学无止境</a></span><span class="left yd"><a href="news.php?id=<?php echo $value['id']; ?>" title="阅读全文">阅读全文</a>
+               <span class="left fl">分类:<a href="#" title="学无止境">学无止境</a></span><span class="left yd"><a href="index.php?id=<?php echo $value['id']; ?>" title="阅读全文">阅读全文</a>
                </span>
                 <div class="clear"></div>
                </p>

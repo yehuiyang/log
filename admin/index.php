@@ -1,3 +1,3 @@
 <?php
-require '/global.php';
+require __DIR__.'/global.php';
 include View::admin('index');

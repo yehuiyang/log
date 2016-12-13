@@ -8,15 +8,56 @@
            </div>
            <div class="news_content">
                   <div class="news_top">
-                    <h1><?php echo $art['title']; ?></h1>
-                    <p>
-                      <span class="left sj">时间:<?php echo $art['postdate']; ?></span><span class="left fl">分类:学无止境</span>
+                    <h1 style="margin: 0px;"><?php echo $art[1]; ?></h1>
+                    <p style="margin-top: 0px;">
+                      <span class="left sj">时间:<?php echo $art[3]; ?></span><span class="left fl">分类:学无止境</span>
                       <span class="left author">段亮</span>
                     </p>
                     <div class="clear"></div>
                   </div>
-                    <div class="news_text"><?php echo $art['content']; ?>
+                    <div class="news_text"><?php echo $art[2]; ?>
+                    <p></p>
                     </div>
+                    <form action="" method="post" class="am-form">
+                      <fieldset>
+                        <legend>发表评论</legend>
+                        <div>昵称：<input type="text" name="nkname"
+                        ><input type="hidden" name="artid" value="<?php echo $art[0]; ?>"
+                        ><input type="hidden" name="postdate" value="<?php echo $time; ?>" 
+                        ></div>
+                        <div class="am-form-group">
+                          <label for="doc-ta-1">评论</label>
+                          <textarea class="" rows="5" id="doc-ta-1"></textarea>
+                        </div>
+
+                        <p><button type="submit" class="am-btn am-btn-default">提交</button></p>
+                      </fieldset>
+                    </form>
+
+                    <ul class="am-comments-list am-comments-list-flip">
+                    <?php if(!empty($coms)):foreach ($coms as $key => $value):?>
+                      <li class="am-comment am-comment-primary">
+                        <a href="#link-to-user-home">
+                          <img src="" alt="" class="am-comment-avatar" width="48" height="48">
+                        </a>
+                        <div class="am-comment-main">
+                          <header class="am-comment-hd">
+                            <div class="am-comment-meta">
+                              <a href="#link-to-user" class="am-comment-author"><?php echo $value['nkname'] ?>
+                              </a> 评论于 
+                              <time><?php echo $value['postdate'] ?></time>
+                            </div>
+                          </header>
+                          <div class="am-comment-bd">
+                            <p>
+                              <a href="#lin-to-user">@某人</a> <?php echo $value['content'] ?>
+                            </p>
+                          </div>
+                        </div>
+                      </li>
+                    <?php endforeach;?>
+                  <?php endif;?>
+                    </ul>
            </div>
      
          </div>

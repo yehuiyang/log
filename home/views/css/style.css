@@ -91,11 +91,12 @@ span.bds_more{line-height:16px !important;}
 #news .news_content .news_top h1{font-size:17px;color:#F00E71;font-weight:500;height:25px;line-height:25px;text-align:center;}
 #news .news_content .news_top p{width:710px;height:30px;line-height:30px;}
 #news .news_content .news_top p span{display:block;height:30px;line-height:30px;padding-right:50px;}
-#news .news_content .news_top .sj{display:block;width:120px;height:30px;
-background:url("../images/sj.jpg") 5px 7px no-repeat;padding-left:25px;margin-left:150px;}
-#news .news_content .news_top .author{display:block;width:60px;height:30px; 
+#news .news_content .news_top .sj{display:block;width:265px;height:30px;
+background:url("../images/sj.jpg") 5px 7px no-repeat;padding-left:25px;margin-left:90px;}
+#news .news_content .news_top .author{display:block;width:105px;height:30px; 
 background:url("../images/tx.jpg") 5px 9px no-repeat;padding-left:25px;margin-left:20px;}
-#news .news_content .news_text{width:710px;}
+#news .news_content .news_text{width:710px;
+    word-wrap: break-word;}
 /*留言板*/
 #content #guestbook{width:730px;height:500px;background:#fff;}
 #guestbook .g_content{width:710px;height:300px;margin-top:10px;padding:0 10px;}
