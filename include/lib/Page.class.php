@@ -21,11 +21,21 @@ class Page
 		$this->page_num = ceil($this->data_count/$this->page_count);
 		$this_page_num = $this->getpage();
 		$this->this_page_num = $this_page_num>$this->page_num?$this->page_num:$this_page_num;
+		$this->data_index = ($this->this_page_num-1)*$this->page_count;
 	}
 	public function getpage()
 	{
-		return isset($_GET[$this->page_name])&&is_integer($_GET[$this->page_name])&&$_GET[$this->page_name]>0?$_GET[$this->page_name]:1;
+		return isset($_GET[$this->page_name])&&is_string($_GET[$this->page_name])&&intval($_GET[$this->page_name])>0?$_GET[$this->page_name]:1;
+	}
+	public function geta()
+	{
+		$a = '';
+		for ($i=1; $i <= $this->page_num; $i++) { 
+			$a .= "<a href='?this_page=$i'>    $i    </a>";
+		}
+		return $a;
 	}
 }
-$page = new Page(15,4,'$this_page');
+$page = new Page(15,4,'this_page');
 var_dump($page);
+echo $page->geta();
