@@ -34,8 +34,8 @@ function get_message($num=0){
 		case '-4':
 			return "<span class='alert alert-danger'>删除文章失败</span>";
 		case '5':
-			return "<span class='alert alert-success'>用户名密码正确！</span>";
+			return "<span class='alert alert-success'>删除评论成功</span>";
 		case '-5':
-			return "<span class='alert alert-danger'>用户名或密码错误！</span>";
+			return "<span class='alert alert-danger'>删除评论失败</span>";
 	}
 }
