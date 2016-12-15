@@ -21,6 +21,7 @@ switch ($action) {
 	default:
 		if ($art = $article->articles()) {
 			//获取数据
+
 			include View::admin('admin_log');
 		}else{
 			$message = '没有数据';

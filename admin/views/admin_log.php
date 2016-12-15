@@ -96,6 +96,7 @@
     
         </div>
 </form>
+<?php $page = new Page(1500,20,3,'p');echo $page->geta(); ?>
 <div class="page"> (有1篇文章)</div>
 </div>
 <script type="text/javascript">
